@@ -8,13 +8,13 @@ async function affichTeddies() {
         for (let i = 0; i < data.length; i++) {
             let nomOurson = data[i].name;
             let imgOurson = data[i].imageUrl;
-
             let imgOursons = document.createElement("img");
             imgOursons.src = data[i].imageUrl;
 
+
             let liOursons = document.createElement("li");
             let aOursons = document.createElement("a");
-            aOursons.href = data[i]._id;
+            aOursons.href = 'produits.html?id=' + data[i]._id;
 
             let pOursons = document.createElement('p');
             pOursons.textContent = nomOurson;

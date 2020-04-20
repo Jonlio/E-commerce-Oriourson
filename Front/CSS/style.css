@@ -9,7 +9,15 @@ h2 {
 
 li {
     margin-bottom: 50px;
+    list-style-type: none;
 }
+
+li p:hover {
+        overflow: hidden;
+        transform: scale(1.3);
+        transition: transform 0.6s ease-in-out;
+        opacity: 0.8;
+    }
 
 main img {
     width: 300px;
@@ -17,9 +25,6 @@ main img {
     margin: 30px;
 }
 
-li {
-    list-style-type: none;
-}
 
 /*RESPONSIVE*/
 @media all and (max-width:400px) {
