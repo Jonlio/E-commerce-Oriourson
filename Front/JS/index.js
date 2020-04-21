@@ -1,28 +1,28 @@
 //Affichage des Oursons
 async function affichTeddies() {
     let response = await fetch('http://localhost:3000/api/teddies');
-    let datas = await response.json();
+    let data = await response.json();
 
     if (response.ok) {
-        console.log(datas);
+        console.log(data);
 
-        for (let i = 0; i < datas.length; i++) {
-            let nomOurson = datas[i].name;
-            let imgOurson = datas[i].imageUrl;
+        for (let i = 0; i < data.length; i++) {
+            let nomOurson = data[i].name;
+            let imgOurson = data[i].imageUrl;
             let imgOursons = document.createElement("img");
-            imgOursons.src = datas[i].imageUrl;
+            imgOursons.src = data[i].imageUrl;
 
             let liOursons = document.createElement("li");
             let aOursons = document.createElement("a");
-            aOursons.href = 'produits.html?id=' + datas[i]._id;
+            aOursons.href = 'produits.html?id=' + data[i]._id;
 
-            let pOursons = document.createElement('p');
-            pOursons.textContent = nomOurson;
+            let h3Oursons = document.createElement('h3');
+            h3Oursons.textContent = nomOurson;
 
             let divOursons = document.getElementById("produits");
             divOursons.appendChild(liOursons);
             liOursons.appendChild(imgOursons);
-            aOursons.appendChild(pOursons);
+            aOursons.appendChild(h3Oursons);
             liOursons.appendChild(aOursons);
         }
 
