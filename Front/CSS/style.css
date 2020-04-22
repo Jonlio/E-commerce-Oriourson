@@ -1,5 +1,5 @@
 /*MAIN PAGE*/
-.navbar-bc-color {
+.navbar-bc-color, .btn-color {
     background-color: #f2e8f0;
 }
 
@@ -24,7 +24,6 @@ main img {
     height: 200px;
     margin: 30px;
 }
-
 
 /*RESPONSIVE*/
 @media all and (max-width:400px) {
