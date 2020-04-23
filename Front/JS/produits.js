@@ -1,5 +1,5 @@
 // Affichage Ourson Selectionne
-function affichTeddy() {
+function affichOurson() {
     let params = new URLSearchParams(window.location.search);
     let id = params.get("id");
     let request = new XMLHttpRequest();
@@ -40,8 +40,8 @@ function affichTeddy() {
 
     //Error
     request.onerror = function () {
-        alert('Server error, please try again later');
+        console.log('Server error, please try again later');
     }
 }
 
-affichTeddy()
+affichOurson()

@@ -1,5 +1,5 @@
 //Affichage des Oursons
-async function affichTeddies() {
+async function affichOursons() {
     let response = await fetch('http://localhost:3000/api/teddies');
     let datas = await response.json();
 
@@ -7,9 +7,7 @@ async function affichTeddies() {
         console.log(datas);
 
         for (let i = 0; i < datas.length; i++) {
-            let nomOurson = datas[i].name;
-            let imgOurson = datas[i].imageUrl;
-
+            
             let liOursons = document.createElement("li");
             let imgOursons = document.createElement("img");
             let aOursons = document.createElement("a");
@@ -17,7 +15,7 @@ async function affichTeddies() {
 
             imgOursons.src = datas[i].imageUrl;
             aOursons.href = 'produits.html?id=' + datas[i]._id;
-            h3Oursons.textContent = nomOurson;
+            h3Oursons.textContent = datas[i].name;
 
             let ulOursons = document.getElementById("produits");
             ulOursons.appendChild(liOursons);
@@ -31,4 +29,4 @@ async function affichTeddies() {
     }
 }
 
-affichTeddies();
+affichOursons();
