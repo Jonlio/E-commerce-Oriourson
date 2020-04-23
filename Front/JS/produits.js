@@ -9,13 +9,14 @@ function affichTeddy() {
 
     request.onload = function () {
         let data = request.response;
-        console.log(data);
+        let colors = data.colors;
 
         let oursChoisi = document.createElement('article');
         let oursImage = document.createElement('img');
         let oursNom = document.createElement('h3');
         let oursDescri = document.createElement('p');
         let oursPrix = document.createElement('p');
+        let oursListColor = document.createElement('select');
 
         oursImage.src = data.imageUrl;
         oursNom.textContent = data.name;
@@ -28,6 +29,13 @@ function affichTeddy() {
         oursChoisi.appendChild(oursNom);
         oursChoisi.appendChild(oursDescri);
         oursChoisi.appendChild(oursPrix);
+        oursChoisi.appendChild(oursListColor);
+        
+        for (let color of colors) {
+            let choixCouleur = document.createElement('option');
+            choixCouleur.textContent = color;
+            oursListColor.appendChild(choixCouleur);
+            }
     }
 
     //Error
