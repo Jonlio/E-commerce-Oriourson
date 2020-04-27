@@ -8,7 +8,7 @@ async function recupOurson() {
 }
 
 recupOurson()
-    .then(function affichOurson (data) {
+    .then(function (data) {
 
         let oursChoisi = document.createElement('article');
         let oursImage = document.createElement('img');
@@ -39,18 +39,16 @@ recupOurson()
 
         //Ajout de l'ourson au pannier
         let bouton = document.querySelector('button');
-        bouton.addEventListener("click", () => {
-            var dataOurson = {
-                name: data.name,
-                price: data.price,
-                id: data._id,
-                qty: 1
-            };
-            var dataTableau = localStorage.getItem('panier') ?
-                JSON.parse(localStorage.getItem('panier')) : [];
-            dataTableau.push(dataOurson);
-            bouton.addEventListener('click', function () {
-                localStorage.setItem('panier', JSON.stringify(dataTableau));
-            });
+        var productData = {
+            id: data._id,
+            name: data.name,
+            price: data.price,
+            image: data.imageUrl
+        };
+        var itemsArray = localStorage.getItem('panier') ?
+            JSON.parse(localStorage.getItem('panier')) : [];
+        itemsArray.push(productData);
+        bouton.addEventListener('click', function () {
+            localStorage.setItem('panier', JSON.stringify(itemsArray));
         });
-    })
+    });
