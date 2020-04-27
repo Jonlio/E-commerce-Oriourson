@@ -8,7 +8,7 @@ async function recupOurson() {
 }
 
 recupOurson()
-    .then(function (data) {
+    .then(function affichOurson (data) {
 
         let oursChoisi = document.createElement('article');
         let oursImage = document.createElement('img');
@@ -16,15 +16,11 @@ recupOurson()
         let oursDescri = document.createElement('p');
         let oursPrix = document.createElement('p');
         let oursListColor = document.createElement('select');
-        let lienPannier = document.createElement('a');
-        let bouton = document.createElement('p');
 
         oursImage.src = data.imageUrl;
         oursNom.textContent = data.name;
         oursDescri.textContent = data.description;
         oursPrix.textContent = 'Prix: ' + data.price / 100 + '€';
-        lienPannier.href = 'pannier.html'
-        bouton.textContent = 'Je l\'adopte!';
 
         let section = document.querySelector('#produit');
         section.appendChild(oursChoisi);
@@ -33,8 +29,6 @@ recupOurson()
         oursChoisi.appendChild(oursDescri);
         oursChoisi.appendChild(oursPrix);
         oursChoisi.appendChild(oursListColor);
-        oursChoisi.appendChild(lienPannier);
-        lienPannier.appendChild(bouton);
 
         let colors = data.colors;
         for (let color of colors) {
@@ -42,6 +36,21 @@ recupOurson()
             choixCouleur.textContent = color;
             oursListColor.appendChild(choixCouleur);
         }
+
+        //Ajout de l'ourson au pannier
+        let bouton = document.querySelector('button');
+        bouton.addEventListener("click", () => {
+            var dataOurson = {
+                name: data.name,
+                price: data.price,
+                id: data._id,
+                qty: 1
+            };
+            var dataTableau = localStorage.getItem('panier') ?
+                JSON.parse(localStorage.getItem('panier')) : [];
+            dataTableau.push(dataOurson);
+            bouton.addEventListener('click', function () {
+                localStorage.setItem('panier', JSON.stringify(dataTableau));
+            });
+        });
     })
-
-
