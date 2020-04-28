@@ -1,7 +1,7 @@
-//Récupération localStorage
+//Récupération contenu localStorage
 let panier = JSON.parse(localStorage.getItem('panier'));
 
-//Affichage contenu panier
+//Affichage contenu panier et total
 for (let i = 0; i < panier.length; i++) {
     let oursChoisi = document.createElement('article');
     let oursNom = document.createElement('h3');
@@ -25,3 +25,10 @@ for (let i = 0; i < panier.length; i++) {
 let prixTotal = document.createElement('p');
 prixTotal.textContent = 'Le montant total de votre panier est de ' + total / 100 + ' €';
 section.appendChild(prixTotal);
+
+//Vider panier
+let viderPanier = document.querySelector('button');
+viderPanier.addEventListener('click', function() {
+    localStorage.clear();
+    location.reload(true);
+})
