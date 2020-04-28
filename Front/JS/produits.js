@@ -8,8 +8,7 @@ async function recupOurson() {
 }
 
 recupOurson()
-    .then(function (data) {
-
+    .then(function affichOurson(data) {
         let oursChoisi = document.createElement('article');
         let oursImage = document.createElement('img');
         let oursNom = document.createElement('h3');
@@ -39,6 +38,7 @@ recupOurson()
 
         //Ajout de l'ourson au pannier
         let bouton = document.querySelector('button');
+        bouton.innerHTML = 'Je l\'adopte';
         var productData = {
             id: data._id,
             name: data.name,
@@ -50,5 +50,6 @@ recupOurson()
         itemsArray.push(productData);
         bouton.addEventListener('click', function () {
             localStorage.setItem('panier', JSON.stringify(itemsArray));
+            bouton.innerHTML = 'Adopté!';   
         });
     });
