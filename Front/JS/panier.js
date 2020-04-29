@@ -1,14 +1,6 @@
 //Récupération contenu localStorage
 let panier = JSON.parse(localStorage.getItem('panier'));
 
-if (panier === null) {
-    panierVide()
-} else {
-    panierPlein();
-    commandeTotal();
-    viderPanier();
-}
-
 function panierVide() {
     let section = document.querySelector('#section');
     let btn = document.querySelector('button');
@@ -58,4 +50,12 @@ function viderPanier() {
         localStorage.clear();
         location.reload(true);
     })
+}
+
+if (panier === null) {
+    panierVide()
+} else {
+    panierPlein();
+    commandeTotal();
+    viderPanier();
 }

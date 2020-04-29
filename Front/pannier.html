@@ -24,9 +24,33 @@
     </header>
 
     <main class="p-3">
-        <h2>Votre panier:</h2>
-        <div id="section"></div>
-        <button type="button" class="btn btn-color"></button>
+        <section>
+            <h2>Votre panier:</h2>
+            <div id="section"></div>
+            <button type="button" class="btn btn-color"></button>
+        </section>
+        <section class="formulaire">
+            <form>
+                <h2>Validez votre commande:</h2>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Votre mail</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1">
+                </div>
+                <div class="form-group">
+                    <label for="nom">Votre nom</label>
+                    <input type="Nom" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Votre prenom</label>
+                    <input type="Prenom" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="form-group">
+                    <label for="adresse">Votre adresse</label>
+                    <input type="Adresse" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn btn-primary">Je valide</button>
+            </form>
+        </section>
     </main>
     <script src="JS/panier.js"></script>
 </body>

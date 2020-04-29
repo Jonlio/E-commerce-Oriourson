@@ -25,6 +25,14 @@ main img {
     margin: 30px;
 }
 
+/*Formulaire*/
+.formulaire{
+    margin-top: 60px;;
+}
+.formulaire .form-group {
+    text-align: left;
+}
+
 /*RESPONSIVE*/
 @media all and (max-width:400px) {
     h1 {
