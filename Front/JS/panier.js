@@ -1,6 +1,16 @@
 //Récupération contenu localStorage
 let panier = JSON.parse(localStorage.getItem('panier'));
 
+const gestionPanier = () => {
+    if (panier === null) {
+        panierVide()
+    } else {
+        panierPlein();
+        commandeTotal();
+        viderPanier();
+    }
+}
+
 function panierVide() {
     let section = document.querySelector('#section');
     let btn = document.querySelector('button');
@@ -52,10 +62,27 @@ function viderPanier() {
     })
 }
 
-if (panier === null) {
-    panierVide()
-} else {
-    panierPlein();
-    commandeTotal();
-    viderPanier();
-}
+gestionPanier()
+
+/*
+//Formulaire
+//Récupération données saisies
+let clientPrenom = document.querySelector('#clientPrenom');
+let clientNom = document.querySelector('#clientNom');
+let clientAdresse = document.querySelector('#clientAdresse');
+let clientVille = document.querySelector('#clientVille');
+let clientEmail = document.querySelector('#clientEmail');
+let validBtn = document.querySelector('#validBtn');
+
+validBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    let infoClient = {
+        firstName: clientPrenom.value,
+        lastName: clientNom.value,
+        address: clientAdresse.value,
+        city: clientVille.value,
+        email: clientEmail.value,
+    }
+    console.log(infoClient)
+});
+*/
