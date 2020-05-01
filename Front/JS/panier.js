@@ -3,31 +3,31 @@ let panier = JSON.parse(localStorage.getItem('panier'));
 
 const gestionPanier = () => {
     if (panier === null) {
-        panierVide()
+        affichagePanierVide()
     } else {
-        panierPlein();
-        commandeTotal();
-        viderPanier();
+        affichagePanierPlein();
+        affichageMontantTotal();
+        initViderPanier();
     }
 }
 
-function panierVide() {
+function affichagePanierVide() {
     let section = document.querySelector('#section');
     let btn = document.querySelector('button');
 
-    let panierVide = document.createElement('h3');
+    let affichagePanierVide = document.createElement('h3');
     let link = document.createElement('a');
 
-    panierVide.textContent = '... est vide';
+    affichagePanierVide.textContent = '... est vide';
     link.href = 'index.html';
     btn.textContent = 'Go shopping';
 
-    section.appendChild(panierVide);
+    section.appendChild(affichagePanierVide);
     section.appendChild(link);
     link.appendChild(btn);
 }
 
-function panierPlein() {
+function affichagePanierPlein() {
     for (let i = 0; i < panier.length; i++) {
         let oursChoisi = document.createElement('article');
         let oursNom = document.createElement('h3');
@@ -43,7 +43,7 @@ function panierPlein() {
     }
 }
 
-function commandeTotal() {
+function affichageMontantTotal() {
     let total = 0;
     for (let i = 0; i < panier.length; i++) {
         total += panier[i].price;
@@ -53,7 +53,7 @@ function commandeTotal() {
     section.appendChild(prixTotal);
 }
 
-function viderPanier() {
+function initViderPanier() {
     let btnVider = document.querySelector('button');
     btnVider.textContent = 'Vider le panier';
     btnVider.addEventListener('click', function () {
@@ -64,25 +64,41 @@ function viderPanier() {
 
 gestionPanier()
 
-/*
-//Formulaire
-//Récupération données saisies
-let clientPrenom = document.querySelector('#clientPrenom');
-let clientNom = document.querySelector('#clientNom');
-let clientAdresse = document.querySelector('#clientAdresse');
-let clientVille = document.querySelector('#clientVille');
-let clientEmail = document.querySelector('#clientEmail');
-let validBtn = document.querySelector('#validBtn');
 
-validBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    let infoClient = {
-        firstName: clientPrenom.value,
-        lastName: clientNom.value,
-        address: clientAdresse.value,
-        city: clientVille.value,
-        email: clientEmail.value,
-    }
-    console.log(infoClient)
-});
-*/
+    let clientPrenom = document.querySelector('#clientPrenom');
+    let clientNom = document.querySelector('#clientNom');
+    let clientAdresse = document.querySelector('#clientAdresse');
+    let clientVille = document.querySelector('#clientVille');
+    let clientEmail = document.querySelector('#clientEmail');
+    let validBtn = document.querySelector('#validBtn');
+
+    validBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var infoClient = new Object();
+        infoClient.contact = {
+            firstName: clientPrenom.value,
+            lastName: clientNom.value,
+            address: clientAdresse.value,
+            city: clientVille.value,
+            email: clientEmail.value,
+        };
+
+        infoClient.products = [];
+        for (var i = 0; i < panier.length; i++) {
+            infoClient.products.push(panier[i].id);
+        }
+
+        let response = fetch("http://localhost:3000/api/teddies/order", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify(infoClient),
+        })
+        localStorage.clear()
+    });
+
+
+

@@ -20,7 +20,8 @@ const affichOursons = async () => {
 
         let ulOursons = document.getElementById("produits");
         ulOursons.appendChild(liOursons);
-        liOursons.appendChild(imgOursons);
+        liOursons.appendChild(aOursons);
+        aOursons.appendChild(imgOursons);
         aOursons.appendChild(nomOursons);
         liOursons.appendChild(aOursons);
     }
