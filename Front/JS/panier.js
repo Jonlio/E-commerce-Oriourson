@@ -43,7 +43,7 @@ function affichagePanierPlein() {
     }
 }
 
-const calculMontantTotal = () =>  {
+const calculMontantTotal = () => {
     let total = 0;
     for (let i = 0; i < panier.length; i++) {
         total += panier[i].price;
@@ -80,38 +80,40 @@ async function validerCommande() {
 
     validBtn.addEventListener('click', async function (e) {
         e.preventDefault();
-        let products = []
-        let number = sessionStorage.getItem("nb");
 
-        for (let i = 1; i <= number; i++) {
-            let ref = localStorage.getItem("article_id" + i);
-            let newID = products.push(ref);
+
+        let donnesCommande = new Object();
+
+        donnesCommande.contact = {
+            firstName: clientPrenom.value,
+            lastName: clientNom.value,
+            address: clientAdresse.value,
+            city: clientVille.value,
+            email: clientEmail.value,
+        };
+
+        donnesCommande.products = [];
+        for (let i = 1; i < panier.length; i++) {
+            donnesCommande.products.push(panier[i].id);
         }
 
-        let contact = new Object();
-        contact.firstName = clientPrenom;
-        contact.lastName = clientNom;
-        contact.address = clientAdresse;
-        contact.city = clientVille;
-        contact.email = clientEmail;
+        if (clientPrenom.value == 0 || clientNom.value == 0 || clientAdresse.value == 0 || clientVille.value == 0 || clientEmail.value == 0) {
+            alert('Veuillez remplir tous les champs du formulaire pour valider votre commande!');
+        } else {
+            //Requête
+            response = await fetch("http://localhost:3000/api/teddies/order", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                mode: 'cors',
+                body: JSON.stringify(donnesCommande),
+            })
 
-        let order = new Object()
-        order.contact = contact;
-        order.products = products;
-
-        //Requête
-        response = await fetch("http://localhost:3000/api/teddies/order", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            mode: 'cors',
-            body: JSON.stringify(order),
-        })
-
-        let infosCommande = await response.json();
-        window.location = 'confirmation.html?id=' + infosCommande.orderId + '&price=' + calculMontantTotal();
+            let reponseCommande = await response.json();
+            window.location = 'confirmation.html?id=' + reponseCommande.orderId + '&price=' + calculMontantTotal();
+        }
     })
 }
 
