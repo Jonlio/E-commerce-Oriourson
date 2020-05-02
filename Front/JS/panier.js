@@ -43,13 +43,17 @@ function affichagePanierPlein() {
     }
 }
 
-function affichageMontantTotal() {
+const calculMontantTotal = () =>  {
     let total = 0;
     for (let i = 0; i < panier.length; i++) {
         total += panier[i].price;
     }
+    return total / 100;
+}
+
+function affichageMontantTotal() {
     let prixTotal = document.createElement('p');
-    prixTotal.textContent = 'Le montant total de votre panier est de ' + total / 100 + ' €';
+    prixTotal.textContent = 'Le montant total de votre panier est de ' + calculMontantTotal() + ' €';
     section.appendChild(prixTotal);
 }
 
@@ -64,7 +68,9 @@ function initViderPanier() {
 
 gestionPanier()
 
+async function validerCommande() {
 
+    //Récupération données saisies
     let clientPrenom = document.querySelector('#clientPrenom');
     let clientNom = document.querySelector('#clientNom');
     let clientAdresse = document.querySelector('#clientAdresse');
@@ -72,33 +78,41 @@ gestionPanier()
     let clientEmail = document.querySelector('#clientEmail');
     let validBtn = document.querySelector('#validBtn');
 
-    validBtn.addEventListener('click', function (e) {
+    validBtn.addEventListener('click', async function (e) {
         e.preventDefault();
-        var infoClient = new Object();
-        infoClient.contact = {
-            firstName: clientPrenom.value,
-            lastName: clientNom.value,
-            address: clientAdresse.value,
-            city: clientVille.value,
-            email: clientEmail.value,
-        };
+        let products = []
+        let number = sessionStorage.getItem("nb");
 
-        infoClient.products = [];
-        for (var i = 0; i < panier.length; i++) {
-            infoClient.products.push(panier[i].id);
+        for (let i = 1; i <= number; i++) {
+            let ref = localStorage.getItem("article_id" + i);
+            let newID = products.push(ref);
         }
 
-        let response = fetch("http://localhost:3000/api/teddies/order", {
+        let contact = new Object();
+        contact.firstName = clientPrenom;
+        contact.lastName = clientNom;
+        contact.address = clientAdresse;
+        contact.city = clientVille;
+        contact.email = clientEmail;
+
+        let order = new Object()
+        order.contact = contact;
+        order.products = products;
+
+        //Requête
+        response = await fetch("http://localhost:3000/api/teddies/order", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             mode: 'cors',
-            body: JSON.stringify(infoClient),
+            body: JSON.stringify(order),
         })
-        localStorage.clear()
-    });
 
+        let infosCommande = await response.json();
+        window.location = 'confirmation.html?id=' + infosCommande.orderId + '&price=' + calculMontantTotal();
+    })
+}
 
-
+validerCommande()
