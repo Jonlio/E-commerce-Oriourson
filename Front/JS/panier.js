@@ -76,12 +76,17 @@ async function validerCommande() {
     let clientAdresse = document.querySelector('#clientAdresse');
     let clientVille = document.querySelector('#clientVille');
     let clientEmail = document.querySelector('#clientEmail');
+    let patternEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     let validBtn = document.querySelector('#validBtn');
+
+    clientEmail.addEventListener('input', (e) => {
+        if (clientEmail.value.match(patternEmail)) {
+            validBtn.removeAttribute('disabled');
+        }
+    });
 
     validBtn.addEventListener('click', async function (e) {
         e.preventDefault();
-
-
         let donnesCommande = new Object();
 
         donnesCommande.contact = {
@@ -97,23 +102,19 @@ async function validerCommande() {
             donnesCommande.products.push(panier[i].id);
         }
 
-        if (clientPrenom.value == 0 || clientNom.value == 0 || clientAdresse.value == 0 || clientVille.value == 0 || clientEmail.value == 0) {
-            alert('Veuillez remplir tous les champs du formulaire pour valider votre commande!');
-        } else {
-            //Requête
-            response = await fetch("http://localhost:3000/api/teddies/order", {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                mode: 'cors',
-                body: JSON.stringify(donnesCommande),
-            })
+        response = await fetch("http://localhost:3000/api/teddies/order", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            mode: 'cors',
+            body: JSON.stringify(donnesCommande),
+        })
 
-            let reponseCommande = await response.json();
-            window.location = 'confirmation.html?id=' + reponseCommande.orderId + '&price=' + calculMontantTotal();
-        }
+        let reponseCommande = await response.json();
+         window.location = 'confirmation.html?id=' + reponseCommande.orderId + '&price=' + calculMontantTotal();
+
     })
 }
 

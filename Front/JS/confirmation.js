@@ -1,10 +1,19 @@
-
+//Confirmation de la commande
 var params = new URLSearchParams(window.location.search);
 var id = params.get("id");
-var price = params.get("price");
+var prixTotal = params.get("price");
 
-let totalPrice = document.getElementById('prix');
-totalPrice.textContent = 'Montant total de votre commande: ' + price + '€';
-let responseOrderId = document.getElementById('test');
-responseOrderId.textContent = 'Votre numéro de commande: ' + id;
+let recapCommande = document.getElementById('confirmation');
+let numCommande = document.createElement('p');
+let recapPrix = document.createElement('p');
+
+numCommande.textContent = 'Votre numéro de commande: ' + id;
+recapPrix.textContent = 'Montant total de votre commande: ' + prixTotal + ' €';
+
+recapCommande.appendChild(numCommande);
+recapCommande.appendChild(recapPrix);
+
+localStorage.clear();
+
+
 
