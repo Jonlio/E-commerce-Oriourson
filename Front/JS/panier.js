@@ -1,6 +1,7 @@
 //Récupération contenu localStorage
 let panier = JSON.parse(localStorage.getItem('panier'));
 
+//Fonction globale 
 const gestionPanier = () => {
     if (panier === null) {
         affichagePanierVide()
@@ -25,6 +26,8 @@ function affichagePanierVide() {
     section.appendChild(affichagePanierVide);
     section.appendChild(link);
     link.appendChild(btn);
+    
+    document.querySelector(".formulaire").style.visibility = "hidden";
 }
 
 function affichagePanierPlein() {
@@ -68,6 +71,7 @@ function initViderPanier() {
 
 gestionPanier()
 
+//Validation du formulaire et de la commande
 async function validerCommande() {
 
     //Récupération données saisies
@@ -113,7 +117,7 @@ async function validerCommande() {
         })
 
         let reponseCommande = await response.json();
-         window.location = 'confirmation.html?id=' + reponseCommande.orderId + '&price=' + calculMontantTotal();
+        window.location = 'confirmation.html?id=' + reponseCommande.orderId + '&price=' + calculMontantTotal();
 
     })
 }

@@ -16,10 +16,14 @@ const affichOurson = async () => {
     let oursPrix = document.createElement('p');
     let oursListColor = document.createElement('select');
 
+    const calculMontantOurson = () => {
+        return data.price / 100;
+    }
+    
     oursImage.src = data.imageUrl;
     oursNom.textContent = data.name;
     oursDescri.textContent = data.description;
-    oursPrix.textContent = 'Prix: ' + data.price / 100 + '€';
+    oursPrix.textContent = 'Prix: ' + calculMontantOurson() + '€';
 
     let section = document.querySelector('#produit');
     section.appendChild(oursChoisi);

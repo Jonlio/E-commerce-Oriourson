@@ -42,6 +42,7 @@
 }
 
 html {
+    height: 100%;
     font-family: sans-serif;
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
@@ -62,9 +63,12 @@ section {
 }
 
 body {
+    height: 100%;
     margin: 0;
-    font-family:  'montserrat';' -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 1rem;
+    padding: 0;
+    font-family: 'montserrat';
+    ' -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
@@ -166,6 +170,7 @@ sub {
 sup {
     top: -.5em;
 }
+
 a {
     color: black;
     text-decoration: none;
@@ -207,7 +212,7 @@ figure {
 
 img {
     vertical-align: middle;
-    border-style:none;
+    border-style: none;
 }
 
 svg {
@@ -573,8 +578,10 @@ pre code {
 
 .container {
     width: 100%;
+    text-align: left;
     padding-right: 15px;
     padding-left: 15px;
+    margin-top: auto;
     margin-right: auto;
     margin-left: auto;
 }

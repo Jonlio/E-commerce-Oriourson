@@ -1,4 +1,5 @@
 //Confirmation de la commande
+const affichageConfirmationCommande = () => {
 var params = new URLSearchParams(window.location.search);
 var id = params.get("id");
 var prixTotal = params.get("price");
@@ -14,6 +15,6 @@ recapCommande.appendChild(numCommande);
 recapCommande.appendChild(recapPrix);
 
 localStorage.clear();
+};
 
-
-
+affichageConfirmationCommande();
