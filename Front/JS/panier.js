@@ -40,6 +40,8 @@ function affichagePanierPlein() {
         oursPrix.textContent = 'Prix: ' + panier[i].price / 100 + '€';
 
         let section = document.querySelector('#section');
+        section.classList.add('badge');
+        section.classList.add('badge-light');
         section.appendChild(oursChoisi);
         oursChoisi.appendChild(oursNom);
         oursChoisi.appendChild(oursPrix);
