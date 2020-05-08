@@ -30,28 +30,27 @@
             <button type="button" class="btn btn-color"></button>
         </section>
         <section class="formulaire">
-            <form>
+            <form id="form">
                 <h2>Validez votre commande:</h2>
                 <div class="form-group">
                     <label for="prenom">Votre prenom</label>
-                    
-                    <input type="text" class="form-control" id="clientPrenom">
+                    <input type="text" required class="form-control" id="clientPrenom">
                 </div>
                 <div class="form-group">
                     <label for="nom">Votre nom</label>
-                    <input type="text" class="form-control" id="clientNom">
+                    <input type="text" required class="form-control" id="clientNom">
                 </div>
                 <div class="form-group">
                     <label for="adresse">Votre adresse</label>
-                    <input type="text" name="prenom" class="form-control" id="clientAdresse">
+                    <input type="text" required name="prenom" class="form-control" id="clientAdresse">
                 </div>
                 <div class="form-group">
                     <label for="ville">Votre ville</label>
-                    <input type="text" class="form-control" id="clientVille">
+                    <input type="text" required class="form-control" id="clientVille">
                 </div>
                 <div class="form-group">
                     <label for="email">Votre email</label>
-                    <input type="email" class="form-control" placeholder="nom@exemple.com" id="clientEmail">
+                    <input type="email" required class="form-control" placeholder="nom@exemple.com" id="clientEmail">
                 </div>
                 <button disabled id="validBtn" type="submit" class="btn btn-primary">Je valide</button>
             </form>

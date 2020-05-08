@@ -1,5 +1,5 @@
 //Confirmation de la commande
-const affichageConfirmationCommande = () => {
+function affichageConfirmationCommande () {
 var params = new URLSearchParams(window.location.search);
 var id = params.get("id");
 var prixTotal = params.get("price");

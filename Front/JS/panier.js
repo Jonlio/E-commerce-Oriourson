@@ -2,7 +2,7 @@
 let panier = JSON.parse(localStorage.getItem('panier'));
 
 //Fonction globale 
-const gestionPanier = () => {
+function gestionPanier() {
     if (panier === null) {
         affichagePanierVide()
     } else {
@@ -26,7 +26,7 @@ function affichagePanierVide() {
     section.appendChild(affichagePanierVide);
     section.appendChild(link);
     link.appendChild(btn);
-    
+
     document.querySelector(".formulaire").style.visibility = "hidden";
 }
 
@@ -48,7 +48,7 @@ function affichagePanierPlein() {
     }
 }
 
-const calculMontantTotal = () => {
+function calculMontantTotal() {
     let total = 0;
     for (let i = 0; i < panier.length; i++) {
         total += panier[i].price;
@@ -71,8 +71,6 @@ function initViderPanier() {
     })
 }
 
-gestionPanier()
-
 //Validation du formulaire et de la commande
 async function validerCommande() {
 
@@ -91,9 +89,11 @@ async function validerCommande() {
         }
     });
 
-    validBtn.addEventListener('click', async function (e) {
-        e.preventDefault();
+    var form = document.querySelector('#form');
+    form.addEventListener('submit', async function (e) {
         let donnesCommande = new Object();
+
+        //  var data = new FormData(form)
 
         donnesCommande.contact = {
             firstName: clientPrenom.value,
@@ -108,7 +108,8 @@ async function validerCommande() {
             donnesCommande.products.push(panier[i].id);
         }
 
-        response = await fetch("http://localhost:3000/api/teddies/order", {
+        response = await
+        fetch("http://localhost:3000/api/teddies/order", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -124,4 +125,5 @@ async function validerCommande() {
     })
 }
 
-validerCommande()
+gestionPanier();
+validerCommande();
