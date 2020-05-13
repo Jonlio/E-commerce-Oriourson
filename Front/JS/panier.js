@@ -91,9 +91,8 @@ async function validerCommande() {
 
     var form = document.querySelector('#form');
     form.addEventListener('submit', async function (e) {
+        e.preventDefault();
         let donnesCommande = new Object();
-
-        //  var data = new FormData(form)
 
         donnesCommande.contact = {
             firstName: clientPrenom.value,

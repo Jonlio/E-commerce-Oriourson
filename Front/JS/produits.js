@@ -19,7 +19,7 @@ const affichOurson = async () => {
     const calculMontantOurson = () => {
         return data.price / 100;
     }
-    
+
     oursImage.src = data.imageUrl;
     oursNom.textContent = data.name;
     oursDescri.textContent = data.description;
@@ -44,17 +44,17 @@ const affichOurson = async () => {
     //Ajout de l'ourson au pannier
     let bouton = document.querySelector('button');
     bouton.innerHTML = 'Je l\'adopte';
-    var productData = {
+    let oursonDonnees = {
         id: data._id,
         name: data.name,
         price: data.price,
         image: data.imageUrl
     };
-    var itemsArray = localStorage.getItem('panier') ?
+    let oursonTableau = localStorage.getItem('panier') ?
         JSON.parse(localStorage.getItem('panier')) : [];
-    itemsArray.push(productData);
+    oursonTableau.push(oursonDonnees);
     bouton.addEventListener('click', function () {
-        localStorage.setItem('panier', JSON.stringify(itemsArray));
+        localStorage.setItem('panier', JSON.stringify(oursonTableau));
         bouton.innerHTML = 'Adopté!';
     });
 }
