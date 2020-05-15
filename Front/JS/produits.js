@@ -1,5 +1,5 @@
 // Recuperation ourson selectionné
-const recupOurson = async () => {
+async function recupOurson() {
     let params = new URLSearchParams(window.location.search);
     let id = params.get("id");
     const response = await fetch("http://localhost:3000/api/teddies/" + id);
@@ -7,7 +7,7 @@ const recupOurson = async () => {
 };
 
 //Affichage ourson selectionné
-const affichOurson = async () => {
+async function affichOurson() {
     const data = await recupOurson()
     let oursChoisi = document.createElement('article');
     let oursImage = document.createElement('img');
