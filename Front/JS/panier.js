@@ -9,6 +9,7 @@ function gestionPanier() {
         affichagePanierPlein();
         affichageMontantTotal();
         initViderPanier();
+        validerCommande();
     }
 }
 
@@ -125,4 +126,4 @@ async function validerCommande() {
 }
 
 gestionPanier();
-validerCommande();
+

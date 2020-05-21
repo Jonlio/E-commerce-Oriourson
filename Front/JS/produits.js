@@ -59,4 +59,26 @@ async function affichOurson() {
     });
 }
 
+//Ajouter l'ourson au panier via le localStorage
+async function ajouterAuPanier() {
+    const data = await recupOurson();
+    let bouton = document.querySelector('button');
+    bouton.innerHTML = 'Je l\'adopte';
+    let oursonDonnees = {
+        id: data._id,
+        name: data.name,
+        price: data.price,
+        image: data.imageUrl
+    };
+
+    let oursonTableau = localStorage.getItem('panier') ?
+        JSON.parse(localStorage.getItem('panier')) : [];
+    oursonTableau.push(oursonDonnees);
+    bouton.addEventListener('click', function () {
+        localStorage.setItem('panier', JSON.stringify(oursonTableau));
+        bouton.innerHTML = 'Adopté!';
+    });
+}
+
 affichOurson();
+ajouterAuPanier();

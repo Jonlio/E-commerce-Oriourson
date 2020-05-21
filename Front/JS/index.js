@@ -1,11 +1,11 @@
 // Recupère tous les Oursons
-const recupOursons = async () => {
+async function recupOursons() {
     const response = await fetch('http://localhost:3000/api/teddies');
     return await response.json();
 }
 
 // Affiche tous les Oursons
-const affichOursons = async () => {
+async function affichOursons() {
     const datas = await recupOursons()
     for (let i = 0; i < datas.length; i++) {
 
@@ -24,6 +24,8 @@ const affichOursons = async () => {
         aOursons.appendChild(imgOursons);
         aOursons.appendChild(nomOursons);
         liOursons.appendChild(aOursons);
+        
+        console.log(ulOursons)
     }
 }
 
