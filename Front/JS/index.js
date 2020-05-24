@@ -1,7 +1,11 @@
 // Recupère tous les Oursons
 async function recupOursons() {
     const response = await fetch('http://localhost:3000/api/teddies');
-    return await response.json();
+    if (response.ok) {
+        return await response.json();
+    } else {
+        alert('Désolé, une erreur est survenue! Retour du serveur: ' + response.status);
+    }
 }
 
 // Affiche tous les Oursons
@@ -24,8 +28,6 @@ async function affichOursons() {
         aOursons.appendChild(imgOursons);
         aOursons.appendChild(nomOursons);
         liOursons.appendChild(aOursons);
-        
-        console.log(ulOursons)
     }
 }
 

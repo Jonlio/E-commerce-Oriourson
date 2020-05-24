@@ -3,7 +3,11 @@ async function recupOurson() {
     let params = new URLSearchParams(window.location.search);
     let id = params.get("id");
     const response = await fetch("http://localhost:3000/api/teddies/" + id);
-    return await response.json();
+    if (response.ok) {
+        return await response.json();
+    } else {
+        alert('Désolé, une erreur est survenue! Retour du serveur: ' + response.status);
+    }
 };
 
 //Affichage ourson selectionné

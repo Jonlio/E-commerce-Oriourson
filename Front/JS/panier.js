@@ -108,7 +108,7 @@ async function validerCommande() {
             donnesCommande.products.push(panier[i].id);
         }
 
-        response = await
+        const response = await
         fetch("http://localhost:3000/api/teddies/order", {
             method: 'POST',
             headers: {
@@ -121,9 +121,7 @@ async function validerCommande() {
 
         let reponseCommande = await response.json();
         window.location = 'confirmation.html?id=' + reponseCommande.orderId + '&price=' + calculMontantTotal();
-
     })
 }
 
 gestionPanier();
-
