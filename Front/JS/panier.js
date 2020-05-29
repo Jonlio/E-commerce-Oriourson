@@ -119,8 +119,12 @@ async function validerCommande() {
             body: JSON.stringify(donnesCommande),
         })
 
-        let reponseCommande = await response.json();
-        window.location = 'confirmation.html?id=' + reponseCommande.orderId + '&price=' + calculMontantTotal();
+        if (response.status != 201) {
+            alert('Désolé, une erreur est survenue! Retour du serveur: ' + response.status);
+        } else {
+            let reponseCommande = await response.json();
+            window.location = 'confirmation.html?id=' + reponseCommande.orderId + '&price=' + calculMontantTotal();
+        }
     })
 }
 
