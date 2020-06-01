@@ -108,8 +108,7 @@ async function validerCommande() {
             donnesCommande.products.push(panier[i].id);
         }
 
-        const response = await
-        fetch("http://localhost:3000/api/teddies/order", {
+        const response = await fetch("http://localhost:3000/api/teddies/order", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

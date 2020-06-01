@@ -7,6 +7,7 @@ async function recupOurson() {
         return await response.json();
     } else {
         alert('Désolé, une erreur est survenue! Retour du serveur: ' + response.status);
+        window.location.href = 'index.html';
     }
 };
 
