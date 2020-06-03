@@ -38,7 +38,7 @@ async function affichOurson() {
     oursChoisi.appendChild(oursPrix);
     oursChoisi.appendChild(oursListColor);
 
-    //Selection couleur
+    //Selection couleur 
     let colors = data.colors;
     for (let color of colors) {
         let choixCouleur = document.createElement('option');
@@ -62,7 +62,7 @@ async function ajouterAuPanier() {
     let oursonTableau = localStorage.getItem('panier') ?
         JSON.parse(localStorage.getItem('panier')) : [];
     oursonTableau.push(oursonDonnees);
-    bouton.addEventListener('click', function () {
+    bouton.addEventListener('click', function() {
         localStorage.setItem('panier', JSON.stringify(oursonTableau));
         bouton.innerHTML = 'Adopté!';
     });

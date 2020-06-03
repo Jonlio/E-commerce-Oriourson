@@ -13,6 +13,7 @@ function gestionPanier() {
     }
 }
 
+//Si panier vide:
 function affichagePanierVide() {
     let section = document.querySelector('#section');
     let btn = document.querySelector('button');
@@ -31,6 +32,7 @@ function affichagePanierVide() {
     document.querySelector(".formulaire").style.visibility = "hidden";
 }
 
+//Si ourson ajouté au panier
 function affichagePanierPlein() {
     for (let i = 0; i < panier.length; i++) {
         let oursChoisi = document.createElement('article');
