@@ -34,11 +34,11 @@
                 <h2>Validez votre commande:</h2>
                 <div class="form-group">
                     <label for="prenom">Votre prenom</label>
-                    <input type="text" required class="form-control" id="clientPrenom">
+                    <input type="text" required pattern="[A-Za-z]{2,}" class="form-control" id="clientPrenom">
                 </div>
                 <div class="form-group">
                     <label for="nom">Votre nom</label>
-                    <input type="text" required class="form-control" id="clientNom">
+                    <input type="text" required pattern="[A-Za-z]{2,}" class="form-control" id="clientNom">
                 </div>
                 <div class="form-group">
                     <label for="adresse">Votre adresse</label>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="form-group">
                     <label for="ville">Votre ville</label>
-                    <input type="text" required class="form-control" id="clientVille">
+                    <input type="text" required pattern="[A-Za-z]{2,}" class="form-control" id="clientVille">
                 </div>
                 <div class="form-group">
                     <label for="email">Votre email</label>
