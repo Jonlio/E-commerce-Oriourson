@@ -55,13 +55,11 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Votre email</label>
-                    <input type="email" required class="form-control" placeholder="nom@exemple.com" id="clientEmail">
+                    <input type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" placeholder="nom@exemple.com" id="clientEmail">
                 </div>
                 <button disabled id="validBtn" type="submit" class="btn btn-primary">Je valide</button>
             </form>
         </section>
     </main>
     <script src="JS/panier.js"></script>
-</body>
-
-</html>
+</body></html>
